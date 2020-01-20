@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  merakiteams:
+    image: merakiteams:latest
+    ports:
+    - 8080:8080
+  redis_db:
+    image: redis:latest

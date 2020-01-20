@@ -1,0 +1,22 @@
+{
+  "name": "meraki-teams-hooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.braums.com/joshwiles/meraki-teams-hooks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bull": "^3.12.1",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "express-static-gzip": "^2.0.6",
+    "node-fetch": "^2.6.0"
+  }
+}
