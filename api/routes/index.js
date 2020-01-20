@@ -10,21 +10,19 @@ const teamsURL = ''; //Your Webex Teams webhooks URL
 const orgId = ''; //Your Meraki OrgId
 
 q.process(async function(job,done){
-    if(+process.env.NODE_APP_INSTANCE === 3) {
-        let networkName = job.data.networkName;
-        let deviceName = job.data.deviceName;
-        let alertType = job.data.alertType;
-        let alertData = job.data.alertData;
-        let payload = { 'markdown' : `**${networkName}**</br>\n>**Device:** ${deviceName}</br>\n>**Alert Type:** ${alertType} </br>\n>**Alert Data:** ${JSON.stringify(alertData)}`};
-        await sendTeamsMessage(payload)
-        .then((result) => {
-            console.log(result);
-            setTimeout(function (){
-                antiDdos[job.data.deviceName + ',' + job.data.alertType] = false;
-                done();
-            },300);
-        });
-    }
+    let networkName = job.data.networkName;
+    let deviceName = job.data.deviceName;
+    let alertType = job.data.alertType;
+    let alertData = job.data.alertData;
+    let payload = { 'markdown' : `**${networkName}**</br>\n>**Device:** ${deviceName}</br>\n>**Alert Type:** ${alertType} </br>\n>**Alert Data:** ${JSON.stringify(alertData)}`};
+    await sendTeamsMessage(payload)
+    .then((result) => {
+        console.log(result);
+        setTimeout(function (){
+            antiDdos[job.data.deviceName + ',' + job.data.alertType] = false;
+            done();
+        },300);
+    });
 });
 
 var sendTeamsMessage = function(payload){
