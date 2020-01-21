@@ -46,15 +46,11 @@ var sendTeamsMessage = function(payload){
 router.post('/hooks', (req,res) => {
     var data = req.body;
     if(data.sharedSecret === hooksSecret){ //Check for hooks secret
-        //        createMerakiTicket(data).then((alertId) => {
-        //            res.status(200);
-        //            res.send();
-        //        });
         if(!antiDdos[data.deviceName + ',' + data.alertType]){
             antiDdos[data.deviceName + ',' + data.alertType] = true;
             q.add(data);
         } else {
-        //    console.log('Preventing DDOS. Suck it Meraki.');
+            console.log('Preventing DDOS. Suck it Meraki.');
         }
         res.status(200);
         res.send();
